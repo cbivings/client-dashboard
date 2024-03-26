@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import { getCustomers } from "../../services/api";
+
 function Customers() {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001')
+    getCustomers()
     .then((result) => {
-      console.log(result.data)
-      setCustomers(result.data)
-    }).catch((err) => {console.log(err)});
+      setCustomers(result)
+    })
   }, []);
 
 

@@ -1,23 +1,36 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { createCustomer } from "../../services/api";
 
 function CreateCustomer() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [addresses, setAddresses] = useState('');
   const navigate = useNavigate();
 
   const Submit = (e) => {
     e.preventDefault();
-    console.log(firstName, lastName, phone, email);
-    axios.post('http://localhost:3001/createCustomer', {firstName: firstName, lastName: lastName, phone: phone, email: email})
-    .then((result) => {
-      console.log('success', result);
-      navigate('/');
+    createCustomer({
+      first_name: firstName, 
+      last_name: lastName, 
+      date_of_birth: dateOfBirth,
+      phone_number: phone, 
+      email: email,
+      addresses: [{
+        nickname: nickname,
+        address1: address1,
+        address2: address2,
+        city: city,
+        state: state,
+        zip: zip
+      }]
     })
-    .catch((err) => {console.log(err)});
+    .then((result) => {
+      navigate('/');
+    });
   }
 
   return (
@@ -28,9 +41,14 @@ function CreateCustomer() {
         <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}/>
         <label>Last Name</label>
         <input type="text" name="lastName" onChange={(e) => setLastName(e.target.value)}/>
+        <label>date of birth</label>
+        <input type="text" name="dateOfBirth" onChange={(e) => setDateOfBirth(e.target.value)}/>
         <label>Phone</label>
         <input type="text" name="phone" onChange={(e) => setPhone(e.target.value)}/>
         <label>Email</label>
+        {/* for each address */}
+        <input type="text" name="addresses" onChange={(e) => setAddresses(e.target.value)}/>
+        <label>addresses</label>
         <input type="text" name="email"  onChange={(e) => setEmail(e.target.value)}/>
         <button>Submit</button>
       </form>

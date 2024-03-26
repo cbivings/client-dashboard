@@ -17,4 +17,6 @@ router.post("/createCustomer", createCustomer )
 
 router.put("/updateCustomer/:id", updateCustomer)
 
+// router bulk delete customers
+
 module.exports = router;

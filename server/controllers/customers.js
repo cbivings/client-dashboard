@@ -24,7 +24,8 @@ const getCustomer = (req, res) => {
  * Create a new customer
  */
 const createCustomer = (req, res) => {
-  customerModel.create({ first_name: req.body.firstName, last_name: req.body.lastName, phone_number: req.body.phone, email: req.body.email})
+  console.log(req.body)
+  customerModel.create(req.body)
   .then(customers => res.json(customers))
   .catch(err => res.json(err))
 }
@@ -33,10 +34,21 @@ const createCustomer = (req, res) => {
  * Update Customer
  */
 const updateCustomer = (req, res) => {
-  customerModel.findByIdAndUpdate(req.params.id)
+  customerModel.findByIdAndUpdate(req.params.id, req.body)
   .then(customers => res.json(customers))
   .catch(err => res.json(err))
 }
+
+/**
+ * Bulk delete customers - this is really just changing status on all 
+ * selected customers to 'churned'
+ */
+const bulkDeleteCustomers = (req, res) => {
+  // customerModel.updateMany({ _id: { $in: req.body.ids } }, { status: 'churned' })
+  // .then(customers => res.json(customers))
+  // .catch(err => res.json(err))
+}
+
 
 
 module.exports = {

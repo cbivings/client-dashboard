@@ -1,35 +1,38 @@
-import React, {useState, useEffect} from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import React, {useState, useEffect} from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import { getCustomer, updateCustomer } from "../../services/api"
+import { makeUserDataObject } from "../../services/utils"
 
 function UpdateCustomer() {
-  const {id} = useParams();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const navigate = useNavigate();
+  const {id} = useParams()
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [dateOfBirth, setDateOfBirth] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const navigate = useNavigate()
 
+  //show existing customer info in form
   useEffect(() => {
-    axios.get('http://localhost:3001/getCustomer/' + id)
+    getCustomer(id)
     .then((result) => {
-      console.log(result.data);
-      setFirstName(result.data.first_name);
-      setLastName(result.data.last_name);
-      setPhone(result.data.phone_number);
-      setEmail(result.data.email);
-    }).catch((err) => {console.log(err)});
-  }, []); 
+      setFirstName(result.first_name);
+      setLastName(result.last_name);
+      setDateOfBirth(result.date_of_birth);
+      setPhone(result.phone_number);
+      setEmail(result.email);
+      setAddresses(result.addresses);
+    })
+  }, [])
 
   const Update = (e) => {
     e.preventDefault();
-    axios.put('http://localhost:3001/updateCustomer/' + id, {firstName: firstName, lastName: lastName, phone: phone, email: email})
+    const formData = new FormData(e.target)
+    updateCustomer(id, makeUserDataObject(formData))
     .then(result => {
-      console.log('success', result);
-      navigate('/');
+      navigate('/')
     })
-    .catch(err => console.log(err));
-  };
+  }
 
   return (
     <div>
@@ -39,6 +42,8 @@ function UpdateCustomer() {
         <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
         <label>Last Name</label>
         <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+        <label>date of birth</label>
+        <input type="text" name="dateOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}/>
         <label>Phone</label>
         <input type="text" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
         <label>Email</label>
