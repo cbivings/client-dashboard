@@ -8,7 +8,7 @@ function CreateCustomer() {
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [addresses, setAddresses] = useState('');
+  // const [addresses, setAddresses] = useState('');
   const navigate = useNavigate();
 
   const Submit = (e) => {
@@ -20,12 +20,12 @@ function CreateCustomer() {
       phone_number: phone, 
       email: email,
       addresses: [{
-        nickname: nickname,
-        address1: address1,
-        address2: address2,
-        city: city,
-        state: state,
-        zip: zip
+        // nickname: nickname,
+        // address1: address1,
+        // address2: address2,
+        // city: city,
+        // state: state,
+        // zip: zip
       }]
     })
     .then((result) => {
@@ -47,7 +47,7 @@ function CreateCustomer() {
         <input type="text" name="phone" onChange={(e) => setPhone(e.target.value)}/>
         <label>Email</label>
         {/* for each address */}
-        <input type="text" name="addresses" onChange={(e) => setAddresses(e.target.value)}/>
+        {/* <input type="text" name="addresses" onChange={(e) => setAddresses(e.target.value)}/> */}
         <label>addresses</label>
         <input type="text" name="email"  onChange={(e) => setEmail(e.target.value)}/>
         <button>Submit</button>

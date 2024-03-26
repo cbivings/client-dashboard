@@ -21,7 +21,7 @@ function UpdateCustomer() {
       setDateOfBirth(result.date_of_birth);
       setPhone(result.phone_number);
       setEmail(result.email);
-      setAddresses(result.addresses);
+      // setAddresses(result.addresses);
     })
   }, [])
 

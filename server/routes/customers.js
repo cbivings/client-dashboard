@@ -5,17 +5,16 @@ const {
   createCustomer,
   updateCustomer
 } = require('../controllers/customers')
-const { create } = require('../models/customerdata')
-
+const auth = require('../middleware/auth')
 const router = express.Router()
 
-router.get("/", getCustomers)
+router.get("/", auth, getCustomers)
 
-router.get("/getCustomer/:id", getCustomer)
+router.get("/getCustomer/:id", auth, getCustomer)
 
-router.post("/createCustomer", createCustomer )
+router.post("/createCustomer", auth, createCustomer )
 
-router.put("/updateCustomer/:id", updateCustomer)
+router.put("/updateCustomer/:id", auth, updateCustomer)
 
 // router bulk delete customers
 
