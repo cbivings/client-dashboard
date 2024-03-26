@@ -9,8 +9,11 @@ app.use(cors());
 // force data to json format
 app.use(express.json());
 
+// set up connection to mongodb
 mongoose.connect("mongodb://127.0.0.1:27017/finni");
 
+
+//todo abstract localhost addresses and all that to a config file
 //todo map schema snake case to model camel case
 // create new customers
 //todo add id to customer
@@ -37,14 +40,18 @@ app.get("/getCustomer/:id", async (req, res) => {
 // update customer
 app.put("/updateCustomer/:id", async (req, res) => {
   CustomerModel.findByIdAndUpdate(req.params.id, 
-    { first_name: req.body.firstName, last_name: req.body.lastName, phone_number: req.body.phone, email: req.body.email})
+    { first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      phone_number: req.body.phone,
+      email: req.body.email})
   .then(customers => res.json(customers))
   .catch(err => res.json(err))
 });
 
-//delete customer 
+//delete customer is actually just changing status to churned
 
-//bulk delete customers
+//bulk delete customers, also actually just changing status to churned
+
 
 
 app.listen(3001, () => {
