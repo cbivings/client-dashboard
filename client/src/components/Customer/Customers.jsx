@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import axios from 'axios';
 function Customers() {
-  const [customers, setCustomers] = useState([
-    {
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      phone: "123-456-7890",
-      email: "cbivings@me.com",
-    }
-  ]);
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001')
+    .then((result) => {
+      console.log(result.data)
+      setCustomers(result.data)
+    }).catch((err) => {console.log(err)});
+  }, []);
+
+
   return (
     <div>
       <h1> Customer test </h1>
@@ -29,12 +31,12 @@ function Customers() {
           {customers.map((customer) => (
             <tr key={customer.id}>
               <td>{customer.id}</td>
-              <td>{customer.firstName}</td>
-              <td>{customer.lastName}</td>
-              <td>{customer.phone}</td>
+              <td>{customer.first_name}</td>
+              <td>{customer.last_name}</td>
+              <td>{customer.phone_number}</td>
               <td>{customer.email}</td>
               <td>
-                <Link to="/update"> update</Link>
+                <Link to={`/update/${customer._id}`}> update</Link>
                 <button>delete</button>
                 </td>
             </tr>

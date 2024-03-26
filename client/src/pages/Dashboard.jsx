@@ -12,7 +12,7 @@ const Dashboard = () => {
         <Routes>
           <Route path="/" element={<Customers/>} />
           <Route path="/create" element={<CreateCustomer/>} />
-          <Route path="/update" element={<UpdateCustomer/>} />
+          <Route path="/update/:id" element={<UpdateCustomer/>} />
         </Routes>
       </BrowserRouter>
     </div>
