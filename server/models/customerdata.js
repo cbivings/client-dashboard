@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const CustomersSchema = new mongoose.Schema({
+// in a sql db I would make an array for custom fields here, but 
+// I don't think you have to do that for mongodb with strict:false in the schema
+const customerDataSchema = new mongoose.Schema({
   id: Number,
   first_name: String,
   last_name: String,
@@ -19,6 +21,6 @@ const CustomersSchema = new mongoose.Schema({
   email: String,
 }, { strict: false }); // this is to allow for custom fields to be added to schema i think
 
-const CustomerModel = mongoose.model('customers', CustomersSchema);
+const CustomerDataModel = mongoose.model('customer', customerDataSchema);
 
-module.exports = CustomerModel;
+module.exports = CustomerDataModel;
