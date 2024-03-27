@@ -1,0 +1,32 @@
+/* Finni branding  */
+:root {
+  --body: #141414;
+  --body-bg: #fbf7f0;
+  --primary: #ed762f;
+  --thistle: #d1bce7;
+  --antique-white: #e1d2c6;
+  --dark-slate-blue-2: #4a3a54;
+  --light-blue: #b1d2df;
+  --141414: #333;
+  --linen: #f1eade;
+  --sky-blue: #83c0d8;
+  --dark-slate-blue: #34415b;
+  --tan: #b7a692;
+  --honeydew: #c0d3bf;
+  --brown: #9d383a;
+  --misty-rose: #ebc3bd;
+  --dark-brown: #b7a692;
+  --dark-green: #3b553a;
+  --antique-white-2: #e1d2c6;
+  --floral-white: #fbf7f0;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--linen);
+  color: var(--body);
+}

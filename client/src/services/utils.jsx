@@ -1,7 +1,6 @@
 //abstract the user update/create form 
 
 export const makeUserDataObject = (data) => {
-  console.log(data.get('firstName'))
   const userData = {
     first_name: data.get('firstName'),
     last_name: data.get('lastName'),

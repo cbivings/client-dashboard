@@ -10,6 +10,15 @@ const config = {
   }
 }
 
+export const SaveRow = async (row) => {
+  console.log('payload', row)
+  if(row.isNew) {
+    return createCustomer(row);
+  } else {
+    return updateCustomer(row._id, row);
+  }
+}
+
 export const getCustomers = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}`, config);
@@ -52,6 +61,18 @@ export const login = async (email, password) => {
       email,
       password,
     });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const addCustomField = async (fieldName, fieldType) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/addCustomField`, {
+      fieldName,
+      fieldType,
+    }, config);
     return response.data;
   } catch (error) {
     console.error(error);

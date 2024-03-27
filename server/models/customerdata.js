@@ -18,7 +18,7 @@ const customerDataSchema = new mongoose.Schema({
     },
   ],
   phone_number: String,
-  email: String,
+  email: String
 }, { strict: false }); // this is to allow for custom fields to be added to schema i think
 
 const CustomerDataModel = mongoose.model('customer', customerDataSchema);

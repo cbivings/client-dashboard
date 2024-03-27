@@ -15,6 +15,8 @@ mongoose.connect(db).then(() => {
   console.log('Failed to connect to MongoDB', err);
 })
 
+
+
 //set up router
 const customerRouter = require('./routes/customers')
 app.use("/", customerRouter)
