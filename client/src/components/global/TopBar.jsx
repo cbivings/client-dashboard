@@ -10,7 +10,7 @@ const TopBar = () => {
             sx={{ maxHeight:'1.5em', width:'5em', p: 0 }}
             src="/finnilogo.svg">
         </Box>
-        <Typography variant="h5" component="div">Customer Dashboard</Typography>
+        <Typography variant="h1" component="div">Customer Dashboard</Typography>
       </Toolbar>
     </AppBar>
   );

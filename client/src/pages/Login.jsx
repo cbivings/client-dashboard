@@ -16,7 +16,20 @@ import theme from "../assets/js/theme";
 import { login } from "../services/api";
 import App from '../App.jsx'
 
-// TODO remove, this demo shouldn't need to reset the theme.
+const style = {
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: "#ed762f",
+      color: "#ed762f"
+    }
+  },
+  "& .MuiInputLabel-root": {
+    "&.Mui-focused ": {
+      borderColor: "#ed762f",
+      color: "#ed762f"
+    }
+  }
+}    
 
 export default function Login() {
 
@@ -50,7 +63,7 @@ export default function Login() {
             src="/finnifox.svg">
           </Box>
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color="palette.primary.dark">
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -63,6 +76,7 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              sx={style}
             />
             <TextField
               margin="normal"
@@ -73,6 +87,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              sx={style}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -89,12 +104,12 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color="primary.dark">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color="primary.dark">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
